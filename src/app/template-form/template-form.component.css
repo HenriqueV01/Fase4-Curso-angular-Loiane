@@ -1,0 +1,10 @@
+/*.ng-invalid.ng-touched:not(form){
+  border: 1px solid red;
+
+}
+*/
+.textoErro{
+  color: rgb(146, 12, 12);
+}
+
+
