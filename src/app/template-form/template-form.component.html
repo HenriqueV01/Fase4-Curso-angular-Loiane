@@ -2,53 +2,57 @@
 
   <div style="margin-top: 1rem;" class="form-group"><!-- class="col-md-3" Tamanho pequeno do campo-->
     <div class="col-sm-12">
-      <label for="nome" class="form-label" [class.textoErro]="!nome.valid && nome.touched">Nome:</label>
+      <label for="nome" class="form-label" [ngClass]="aplicaCSSTextoVermelho(nome)">Nome:</label>
+      <!--ESSA CLASSE ERA DENTRO DA TAG LABEL DE FORMA DIRETA-->
+      <!--"[class.textoErro]="!nome.valid && nome.touched"-->
     </div>
     <div class="col-sm-12">
-        <!-- [class.has-error]="!nome.valid && nome.touched"
-      [class.has-feeedback]="!nome.valid && nome.touched" //USADOS NO INPUT -->
-      <input [class.is-invalid]="!nome.valid && nome.touched" type="text" class="form-control" id="nome" placeholder="Nome"
+      <!--CLASSES DE CSS USADOS DE MODO DIRETO PARA ALERTA DE ERRO, MAS NÃO FUNCIONOU NESSE BOOTSTRAP-->
+      <!--[class.has-error]="!nome.valid && nome.touched"
+          [class.has-feeedback]="!nome.valid && nome.touched"-->
+      <input [ngClass]="aplicaCSSInvalido(nome)" type="text" class="form-control" id="nome" placeholder="Nome"
       name="nome" #nome="ngModel" [ngModel]="usuario.nome" required="true">
+
+      <!-- SPAN PARA COLOCAR O ICONE DE (X) NO CAMPO INPUT, MAS NÃO FUNCIONOU COM ESSE BOOTSTRAP -->
       <!--<span class="glyphicon glyphicon-remove form-control-feedback"
         aria-hidden="true" *ngIf="!nome.valid && nome.touched"></span>
-      <span id="nome" class="sr-only" *ngIf="!nome.valid && nome.touched">(error)</span>--><!-- Icone de X no campo input -->
-      <div id="nomeAviso" *ngIf="!nome.valid && nome.touched" class="alert alert-danger form-text" role="alert">
+      <span id="nome" class="sr-only" *ngIf="!nome.valid && nome.touched">(error)</span>-->
+
+      <app-campo-control-erro [mostrarErro]="verificaValidTouched(nome)" msgErro="Nome é obrigatório"></app-campo-control-erro>
+
+      <!--ESSA DIV FOI SUBSTITUIDA PELO COMPONENTE ACIMA-->
+      <!-- <div id="nomeAviso" *ngIf="!nome.valid && nome.touched" class="alert alert-danger form-text" role="alert">
         Nome é obrigatório!
-      </div>
-      <!-- <div>{{ nome.className }}</div>--> <!--SERVE PARA ANALISAR QUAIS SÃO AS CLASSES CSS QUE ESTÃO SENDO USADAS NESSA
-                    tag (obs.: sem usar #nome="ngModel", apenas #nome)-->
+      </div> -->
+
+      <!-- <div>{{ nome.className }}</div>--> <!--SERVE PARA ANALISAR QUAIS SÃO AS CLASSES CSS QUE ESTÃO SENDO USADAS NESSA TAG
+                                                  (obs.: sem usar #nome="ngModel", apenas #nome)-->
     </div>
   </div>
 
   <div style="margin-top: 1rem;" class="form-group"><!-- class="mb-3" -->
     <div class="col-sm-12">
-      <label for="email" class="form-label" [class.textoErro]="!email.valid && email.touched">E-mail:</label>
+      <label for="email" class="form-label" [ngClass]="aplicaCSSTextoVermelho(email)">E-mail:</label>
     </div>
     <div class="col-sm-12">
-      <input [class.is-invalid]="!email.valid && email.touched" type="email" class="form-control" id="email" placeholder="nome@email.com"
+      <input [ngClass]="aplicaCSSInvalido(email)" type="email" class="form-control" id="email" placeholder="nome@email.com"
         name="email" #email="ngModel" [ngModel]="usuario.email" required="true">
-      <div id="nomeAviso" *ngIf="!email.valid && email.touched" class="alert alert-danger form-text" role="alert">
-        E-mail inválido!
-      </div>
+      <app-campo-control-erro [mostrarErro]="verificaValidTouched(email)" msgErro="E-mail é obrigatório"></app-campo-control-erro>
     </div>
   </div>
 
   <div style="margin-top: 1rem;" class="row g-3"><!-- class="form-group"-->
 
     <div class="col-md-3">
-      <label for="cep" class="form-label" [class.textoErro]="!cep.valid && cep.touched">CEP:</label>
-      <input [class.is-invalid]="!cep.valid && cep.touched" type="text" class="form-control" id="cep" name="cep" ngModel required="true" #cep="ngModel">
-      <div id="cepAviso" *ngIf="!cep.valid && cep.touched" class="alert alert-danger form-text" role="alert">
-        CEP é obrigatório!
-      </div>
+      <label for="cep" class="form-label" [ngClass]="aplicaCSSTextoVermelho(cep)">CEP:</label>
+      <input [ngClass]="aplicaCSSInvalido(cep)" type="text" class="form-control" id="cep" name="cep" ngModel required="true" #cep="ngModel">
+      <app-campo-control-erro [mostrarErro]="verificaValidTouched(cep)" msgErro="CEP é obrigatório"></app-campo-control-erro>
     </div>
 
       <div class="col-md-3">
-        <label for="numero" class="form-label" [class.textoErro]="!numero.valid && numero.touched">Número:</label>
-        <input [class.is-invalid]="!numero.valid && numero.touched" type="text" class="form-control" id="numero" name="numero" ngModel required="true" #numero="ngModel">
-        <div id="numeroAviso" *ngIf="!numero.valid && numero.touched" class="alert alert-danger form-text" role="alert">
-          Número é obrigatório!
-        </div>
+        <label for="numero" class="form-label" [ngClass]="aplicaCSSTextoVermelho(numero)">Número:</label>
+        <input [ngClass]="aplicaCSSInvalido(numero)" type="text" class="form-control" id="numero" name="numero" ngModel required="true" #numero="ngModel">
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(numero)" msgErro="Número é obrigatório"></app-campo-control-erro>
       </div>
 
       <div class="col-md-6">
@@ -60,51 +64,39 @@
 
   <div style="margin-top: 1rem;" class="form-group"><!-- class="mb-3" -->
     <div class="col-sm-12">
-      <label for="rua" class="form-label" [class.textoErro]="!rua.valid && rua.touched">Rua:</label>
+      <label for="rua" class="form-label" [ngClass]="aplicaCSSTextoVermelho(rua)">Rua:</label>
     </div>
     <div class="col-md-12">
-      <input [class.is-invalid]="!rua.valid && rua.touched" type="rua" class="form-control" id="rua" readonly style="background-color: rgb(245, 239, 239);"
-         #rua="ngModel" ngModel name="rua" required><!-- Propriedade (name=rua) interfere na propriedade (value="teste") -->
-      <div id="nomeAviso" *ngIf="!rua.valid && rua.touched" class="alert alert-danger form-text" role="alert">
-        Rua é obrigatório!
-      </div>
+      <input [ngClass]="aplicaCSSInvalido(rua)" type="rua" class="form-control" id="rua" readonly style="background-color: rgb(245, 239, 239);"
+         #rua="ngModel" ngModel name="rua" required><!-- PROPRIEDADE (name=rua) INTERFERE NA PROPRIEDADE (value="teste") -->
+         <app-campo-control-erro [mostrarErro]="verificaValidTouched(rua)" msgErro="Rua é obrigatório"></app-campo-control-erro>
     </div>
   </div>
 
-  <div style="margin-top: 1rem;" class="row g-3"><!-- (class="row g-3") Essa classe faz diferença para criar 3 blocos de tags -->
+  <div style="margin-top: 1rem;" class="row g-3"><!-- (class="row g-3") ESSA CLASSE FAZ DIFERENÇA PARA CRIAR 3 BLOCOS DE TAGS -->
 
       <div class="col-md-5">
-        <label for="bairro" class="form-label" [class.textoErro]="!bairro.valid && bairro.touched">Bairro:</label>
-        <input [class.is-invalid]="!bairro.valid && bairro.touched" type="text" class="form-control" id="bairro" name="bairro"
+        <label for="bairro" class="form-label" [ngClass]="aplicaCSSTextoVermelho(bairro)">Bairro:</label>
+        <input [ngClass]="aplicaCSSInvalido(bairro)" type="text" class="form-control" id="bairro" name="bairro"
           ngModel required="true" #bairro="ngModel" readonly style="background-color: rgb(245, 239, 239);">
-        <div id="bairroAviso" *ngIf="!bairro.valid && bairro.touched" class="alert alert-danger form-text" role="alert">
-          Bairro é obrigatório!
-        </div>
+          <app-campo-control-erro [mostrarErro]="verificaValidTouched(bairro)" msgErro="Bairro é obrigatório"></app-campo-control-erro>
       </div>
 
       <div class="col-md-4">
-        <label for="cidade" class="form-label" [class.textoErro]="!cidade.valid && cidade.touched">Cidade:</label>
-        <input [class.is-invalid]="!cidade.valid && cidade.touched" type="text" class="form-control" id="cidade" name="cidade"
+        <label for="cidade" class="form-label" [ngClass]="aplicaCSSTextoVermelho(cidade)">Cidade:</label>
+        <input [ngClass]="aplicaCSSInvalido(cidade)" type="text" class="form-control" id="cidade" name="cidade"
           ngModel required="true" #cidade="ngModel" readonly style="background-color: rgb(245, 239, 239);">
-        <div id="cidadeAviso" *ngIf="!cidade.valid && cidade.touched" class="alert alert-danger form-text" role="alert">
-          Cidade é obrigatório!
-        </div>
+          <app-campo-control-erro [mostrarErro]="verificaValidTouched(cidade)" msgErro="Cidade é obrigatório"></app-campo-control-erro>
       </div>
 
       <div class="col-md-3">
-        <label for="estado" class="form-label" [class.textoErro]="!estado.valid && estado.touched">Estado:</label>
-        <input [class.is-invalid]="!estado.valid && estado.touched" type="text" class="form-control" id="estado" name="estado"
+        <label for="estado" class="form-label" [ngClass]="aplicaCSSTextoVermelho(estado)">Estado:</label>
+        <input [ngClass]="aplicaCSSInvalido(estado)" type="text" class="form-control" id="estado" name="estado"
           ngModel required="true" #estado="ngModel" readonly style="background-color: rgb(245, 239, 239);">
-        <div id="estadoAviso" *ngIf="!estado.valid && estado.touched" class="alert alert-danger form-text" role="alert">
-          Estado é obrigatório!
-        </div>
+          <app-campo-control-erro [mostrarErro]="verificaValidTouched(estado)" msgErro="Estado é obrigatório"></app-campo-control-erro>
       </div>
 
   </div>
-
-
-
-
 
   <button style="margin-top: 1rem;" [disabled]="f.invalid" type="submit" class="btn btn-primary">Submit</button>
   <hr>
