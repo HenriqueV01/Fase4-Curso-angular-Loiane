@@ -41,60 +41,64 @@
     </div>
   </div>
 
-  <div style="margin-top: 1rem;" class="row g-3"><!-- class="form-group"-->
+  <div ngModelGroup="endereco">
 
-    <div class="col-md-3">
-      <label for="cep" class="form-label" [ngClass]="aplicaCSSTextoVermelho(cep)">CEP:</label>
-      <input [ngClass]="aplicaCSSInvalido(cep)" type="text" class="form-control" id="cep" name="cep" ngModel required="true" #cep="ngModel">
-      <app-campo-control-erro [mostrarErro]="verificaValidTouched(cep)" msgErro="CEP é obrigatório"></app-campo-control-erro>
-    </div>
+    <div style="margin-top: 1rem;" class="row g-3"><!-- class="form-group"-->
 
       <div class="col-md-3">
-        <label for="numero" class="form-label" [ngClass]="aplicaCSSTextoVermelho(numero)">Número:</label>
-        <input [ngClass]="aplicaCSSInvalido(numero)" type="text" class="form-control" id="numero" name="numero" ngModel required="true" #numero="ngModel">
-        <app-campo-control-erro [mostrarErro]="verificaValidTouched(numero)" msgErro="Número é obrigatório"></app-campo-control-erro>
+        <label for="cep" class="form-label" [ngClass]="aplicaCSSTextoVermelho(cep)">CEP:</label>
+        <input [ngClass]="aplicaCSSInvalido(cep)" type="text" class="form-control" id="cep" name="cep" ngModel required="true" #cep="ngModel">
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(cep)" msgErro="CEP é obrigatório"></app-campo-control-erro>
       </div>
 
-      <div class="col-md-6">
-        <label for="complemento" class="form-label">Complemento:</label>
-        <input type="text" class="form-control" id="complemento" name="complemento" ngModel #complemento="ngModel">
-      </div>
+        <div class="col-md-3">
+          <label for="numero" class="form-label" [ngClass]="aplicaCSSTextoVermelho(numero)">Número:</label>
+          <input [ngClass]="aplicaCSSInvalido(numero)" type="text" class="form-control" id="numero" name="numero" ngModel required="true" #numero="ngModel">
+          <app-campo-control-erro [mostrarErro]="verificaValidTouched(numero)" msgErro="Número é obrigatório"></app-campo-control-erro>
+        </div>
 
-  </div>
+        <div class="col-md-6">
+          <label for="complemento" class="form-label">Complemento:</label>
+          <input type="text" class="form-control" id="complemento" name="complemento" ngModel #complemento="ngModel">
+        </div>
 
-  <div style="margin-top: 1rem;" class="form-group"><!-- class="mb-3" -->
-    <div class="col-sm-12">
-      <label for="rua" class="form-label" [ngClass]="aplicaCSSTextoVermelho(rua)">Rua:</label>
     </div>
-    <div class="col-md-12">
-      <input [ngClass]="aplicaCSSInvalido(rua)" type="rua" class="form-control" id="rua" readonly style="background-color: rgb(245, 239, 239);"
-         #rua="ngModel" ngModel name="rua" required><!-- PROPRIEDADE (name=rua) INTERFERE NA PROPRIEDADE (value="teste") -->
-         <app-campo-control-erro [mostrarErro]="verificaValidTouched(rua)" msgErro="Rua é obrigatório"></app-campo-control-erro>
+
+    <div style="margin-top: 1rem;" class="form-group"><!-- class="mb-3" -->
+      <div class="col-sm-12">
+        <label for="rua" class="form-label" [ngClass]="aplicaCSSTextoVermelho(rua)">Rua:</label>
+      </div>
+      <div class="col-md-12">
+        <input [ngClass]="aplicaCSSInvalido(rua)" type="rua" class="form-control" id="rua" readonly style="background-color: rgb(245, 239, 239);"
+          #rua="ngModel" ngModel name="rua" required><!-- PROPRIEDADE (name=rua) INTERFERE NA PROPRIEDADE (value="teste") -->
+          <app-campo-control-erro [mostrarErro]="verificaValidTouched(rua)" msgErro="Rua é obrigatório"></app-campo-control-erro>
+      </div>
     </div>
-  </div>
 
-  <div style="margin-top: 1rem;" class="row g-3"><!-- (class="row g-3") ESSA CLASSE FAZ DIFERENÇA PARA CRIAR 3 BLOCOS DE TAGS -->
+    <div style="margin-top: 1rem;" class="row g-3"><!-- (class="row g-3") ESSA CLASSE FAZ DIFERENÇA PARA CRIAR 3 BLOCOS DE TAGS -->
 
-      <div class="col-md-5">
-        <label for="bairro" class="form-label" [ngClass]="aplicaCSSTextoVermelho(bairro)">Bairro:</label>
-        <input [ngClass]="aplicaCSSInvalido(bairro)" type="text" class="form-control" id="bairro" name="bairro"
-          ngModel required="true" #bairro="ngModel" readonly style="background-color: rgb(245, 239, 239);">
-          <app-campo-control-erro [mostrarErro]="verificaValidTouched(bairro)" msgErro="Bairro é obrigatório"></app-campo-control-erro>
-      </div>
+        <div class="col-md-5">
+          <label for="bairro" class="form-label" [ngClass]="aplicaCSSTextoVermelho(bairro)">Bairro:</label>
+          <input [ngClass]="aplicaCSSInvalido(bairro)" type="text" class="form-control" id="bairro" name="bairro"
+            ngModel required="true" #bairro="ngModel" readonly style="background-color: rgb(245, 239, 239);">
+            <app-campo-control-erro [mostrarErro]="verificaValidTouched(bairro)" msgErro="Bairro é obrigatório"></app-campo-control-erro>
+        </div>
 
-      <div class="col-md-4">
-        <label for="cidade" class="form-label" [ngClass]="aplicaCSSTextoVermelho(cidade)">Cidade:</label>
-        <input [ngClass]="aplicaCSSInvalido(cidade)" type="text" class="form-control" id="cidade" name="cidade"
-          ngModel required="true" #cidade="ngModel" readonly style="background-color: rgb(245, 239, 239);">
-          <app-campo-control-erro [mostrarErro]="verificaValidTouched(cidade)" msgErro="Cidade é obrigatório"></app-campo-control-erro>
-      </div>
+        <div class="col-md-4">
+          <label for="cidade" class="form-label" [ngClass]="aplicaCSSTextoVermelho(cidade)">Cidade:</label>
+          <input [ngClass]="aplicaCSSInvalido(cidade)" type="text" class="form-control" id="cidade" name="cidade"
+            ngModel required="true" #cidade="ngModel" readonly style="background-color: rgb(245, 239, 239);">
+            <app-campo-control-erro [mostrarErro]="verificaValidTouched(cidade)" msgErro="Cidade é obrigatório"></app-campo-control-erro>
+        </div>
 
-      <div class="col-md-3">
-        <label for="estado" class="form-label" [ngClass]="aplicaCSSTextoVermelho(estado)">Estado:</label>
-        <input [ngClass]="aplicaCSSInvalido(estado)" type="text" class="form-control" id="estado" name="estado"
-          ngModel required="true" #estado="ngModel" readonly style="background-color: rgb(245, 239, 239);">
-          <app-campo-control-erro [mostrarErro]="verificaValidTouched(estado)" msgErro="Estado é obrigatório"></app-campo-control-erro>
-      </div>
+        <div class="col-md-3">
+          <label for="estado" class="form-label" [ngClass]="aplicaCSSTextoVermelho(estado)">Estado:</label>
+          <input [ngClass]="aplicaCSSInvalido(estado)" type="text" class="form-control" id="estado" name="estado"
+            ngModel required="true" #estado="ngModel" readonly style="background-color: rgb(245, 239, 239);">
+            <app-campo-control-erro [mostrarErro]="verificaValidTouched(estado)" msgErro="Estado é obrigatório"></app-campo-control-erro>
+        </div>
+
+    </div>
 
   </div>
 
