@@ -47,7 +47,8 @@
 
       <div class="col-md-3">
         <label for="cep" class="form-label" [ngClass]="aplicaCSSTextoVermelho(cep)">CEP:</label>
-        <input [ngClass]="aplicaCSSInvalido(cep)" type="text" class="form-control" id="cep" name="cep" ngModel required="true" #cep="ngModel">
+        <input [ngClass]="aplicaCSSInvalido(cep)" type="text" class="form-control" id="cep" name="cep" ngModel required="true" #cep="ngModel"
+        (blur)="consultaCEP(cep.value, f)"><!--(blur)="consultaCEP($event.target.value)" MODO ANTIGO QUE NÃO FUNCIONOU-->
         <app-campo-control-erro [mostrarErro]="verificaValidTouched(cep)" msgErro="CEP é obrigatório"></app-campo-control-erro>
       </div>
 
