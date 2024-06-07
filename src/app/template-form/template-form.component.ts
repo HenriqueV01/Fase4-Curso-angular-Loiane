@@ -52,7 +52,21 @@ export class TemplateFormComponent implements OnInit{
       this.resetaDadosForm(form);
 
       if(validacep.test(cep)){
-        this.http.get(`https://viacep.com.br/ws/${cep}/json`).pipe(map((dados: any)=>dados)).subscribe(dados => this.populaDadosForm(dados, form));
+        this.http.get(`https://viacep.com.br/ws/${cep}/json`).pipe(map((dados: any)=>dados)).subscribe(dados => {
+
+
+          if(!("erro" in dados)){
+
+            this.populaDadosForm(dados, form);
+
+          }else{
+
+            this.resetaDadosForm(form);
+            alert("CEP não encontrado.")
+
+          }
+
+        });
 
       }
     }
