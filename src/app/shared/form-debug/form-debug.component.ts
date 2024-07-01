@@ -8,6 +8,6 @@ import { NgForm } from '@angular/forms';
 })
 export class FormDebugComponent {
 
-  @Input() form!: NgForm;
+  @Input() form!: any;
 
 }

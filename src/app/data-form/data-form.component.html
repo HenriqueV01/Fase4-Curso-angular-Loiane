@@ -5,7 +5,7 @@
       <label for="nome" class="form-label">Nome:</label>
     </div>
     <div class="col-sm-12">
-      <input pe="text" class="form-control" id="nome" placeholder="Nome" name="nome">
+      <input pe="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome">
     </div>
   </div>
 
@@ -14,13 +14,13 @@
       <label for="email" class="form-label">E-mail:</label>
     </div>
     <div class="col-sm-12">
-      <input ype="email" class="form-control" id="email" placeholder="nome@email.com" name="email">
+      <input ype="email" class="form-control" id="email" placeholder="nome@email.com" formControlName="email">
           </div>
   </div>
 
   <button style="margin-top: 1rem;" type="submit" class="btn btn-primary">Submit</button>
-  <!--hr-->
+  <hr>
 
-  <!--app-form-debug [form]="f"></!--app-form-debug-->
+  <app-form-debug [form]="formulario"></app-form-debug>
 
 </form>

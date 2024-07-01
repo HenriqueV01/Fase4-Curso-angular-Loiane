@@ -30,8 +30,4 @@ export class DataFormComponent implements OnInit{
 
   }
 
-  onSubmit(form: NgForm){}
-
-
-
 }
