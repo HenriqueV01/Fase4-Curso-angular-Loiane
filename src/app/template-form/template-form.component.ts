@@ -1,7 +1,7 @@
+import { map } from 'rxjs/internal/operators/map';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { map } from 'rxjs/internal/operators/map';
 
 @Component({
   selector: 'app-template-form',
@@ -18,8 +18,14 @@ export class TemplateFormComponent implements OnInit{
   constructor(private http: HttpClient){}
 
   onSubmit(form: NgForm){
-    console.log(form.value);
+    //console.log(form.value);
     // console.log(this.usuario);
+
+    //https://resttesttest.com/ -- SITE PARA TESTE DE REQUISIÇÕES.
+    this.http.post('https://httpbin.org/post', JSON.stringify(form.value)).pipe(
+      map(res => res)
+    ).subscribe(dados => console.log(dados));
+
   }
 
   verificaValidTouched(campo: any){
