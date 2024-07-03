@@ -17,14 +17,18 @@ export class TemplateFormComponent implements OnInit{
 
   constructor(private http: HttpClient){}
 
-  onSubmit(form: NgForm){
+  onSubmit(formulario: NgForm){
     //console.log(form.value);
     // console.log(this.usuario);
 
     //https://resttesttest.com/ -- SITE PARA TESTE DE REQUISIÇÕES.
-    this.http.post('https://httpbin.org/post', JSON.stringify(form.value)).pipe(
+    this.http.post('https://httpbin.org/post', JSON.stringify(formulario.value)).pipe(
       map(res => res)
-    ).subscribe(dados => console.log(dados));
+    ).subscribe(dados => {
+          console.log(dados);
+          formulario.form.reset();
+        }
+      );
 
   }
 
