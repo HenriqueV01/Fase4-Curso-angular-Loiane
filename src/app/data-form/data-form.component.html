@@ -2,23 +2,26 @@
 
   <div style="margin-top: 1rem;" class="form-group">
     <div class="col-sm-12">
-      <label for="nome" class="form-label">Nome:</label>
+      <label for="nome" class="form-label" [ngClass]="aplicaCSSTextoVermelho('nome')">Nome:</label>
     </div>
     <div class="col-sm-12">
-      <input pe="text" class="form-control" id="nome" placeholder="Nome" formControlName="nome">
+      <input pe="text" class="form-control" [ngClass]="aplicaCSSInvalido('nome')" id="nome" placeholder="Nome" formControlName="nome">
+      <app-campo-control-erro [mostrarErro]="verificaValidTouched('nome')" msgErro="Nome é obrigatório"></app-campo-control-erro>
     </div>
   </div>
 
   <div style="margin-top: 1rem;" class="form-group">
     <div class="col-sm-12">
-      <label for="email" class="form-label">E-mail:</label>
+      <label for="email" class="form-label" [ngClass]="aplicaCSSTextoVermelho('email')">E-mail:</label>
     </div>
     <div class="col-sm-12">
-      <input ype="email" class="form-control" id="email" placeholder="nome@email.com" formControlName="email">
-          </div>
+      <input ype="email" class="form-control" [ngClass]="aplicaCSSInvalido('email')" id="email" placeholder="nome@email.com" formControlName="email">
+      <app-campo-control-erro [mostrarErro]="verificaEmailTouched()" msgErro="E-mail é obrigatório"></app-campo-control-erro>
+      <app-campo-control-erro [mostrarErro]="verificaEmailInvalido()" msgErro="E-mail inválido"></app-campo-control-erro>
+    </div>
   </div>
 
-  <button style="margin-top: 1rem;" type="submit" class="btn btn-primary">Submit</button>
+  <button style="margin-top: 1rem; margin-right: 0.5rem;" type="submit" class="btn btn-primary">Submit</button>
   <button style="margin-top: 1rem;" class="btn btn-secondary" (click)="resetar()">Cancelar</button>
   <hr>
 

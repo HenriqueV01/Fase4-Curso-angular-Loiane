@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs';
 
 @Component({
@@ -29,8 +29,11 @@ export class DataFormComponent implements OnInit{
     // });
 
     this.formulario = this.formBuilder.group({
-      nome: [null],
-      email: [null]
+      nome: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]]
+
+      //Validators.pattern("REGEX");
+
     });
 
   }
@@ -49,6 +52,34 @@ export class DataFormComponent implements OnInit{
 
   resetar() {
     this.formulario.reset();
+    }
+
+    verificaEmailTouched(){
+      // this.formulario.controls[campo];
+      return !this.formulario.get('email')?.value && !!this.formulario.get('email')?.touched;
+    }
+
+    verificaEmailInvalido(){
+      let campoEmail = this.formulario.get('email');
+      if(campoEmail?.errors)
+        return campoEmail.errors['email'];
+    }
+
+    verificaValidTouched(campo: any){
+      // this.formulario.controls[campo];
+      return !this.formulario.get(campo)?.valid && !!this.formulario.get(campo)?.touched;
+    }
+
+    aplicaCSSTextoVermelho(campo: any){
+      return {
+        'textoErro': this.verificaValidTouched(campo)
+      }
+    }
+
+    aplicaCSSInvalido(campo: any){
+      return {
+        'is-invalid': this.verificaValidTouched(campo)
+      }
     }
 
 }
